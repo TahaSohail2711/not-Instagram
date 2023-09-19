@@ -9,7 +9,7 @@ Install not-instagram with npm.
 Clone the project
 
 ```bash
-  git clone https://github.com/Taha-Sohail/not-instagram
+  git clone https://github.com/TahaSohail2711/not-instagram
 ```
 
 To download all common dependencies for client and server.
