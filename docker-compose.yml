@@ -1,0 +1,47 @@
+version: '3'
+services:
+  frontend:
+    build: ./client
+    container_name: react-ui
+    ports:
+      - '3000:3000'
+    restart: always
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - not-instagram
+
+  backend:
+    build: ./server
+    container_name: node-api
+    ports:
+      - '8080:8080'
+    restart: always
+    depends_on:
+      - database
+    networks:
+      - not-instagram
+
+  database:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: notInstagram
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: taha123
+    ports:
+      - '5432:5432'
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - not-instagram
+
+volumes:
+  pgdata:
+
+networks:
+  not-instagram:
+    driver: bridge
